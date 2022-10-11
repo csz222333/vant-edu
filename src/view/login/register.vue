@@ -4,7 +4,7 @@
       <top-bar></top-bar>
     </div>
     <div class="top-font">
-      <p style="margin:0;">用户注册</p>
+      <p style="margin: 0">用户注册</p>
     </div>
     <div>
       <van-form @submit="onSubmit">
@@ -27,7 +27,7 @@
                       @cancel="showPicker = false"
                       @confirm="onConfirm" />
         </van-popup>
-        
+
         <van-field v-model="phone"
                    type="number"
                    name="手机号码"
@@ -40,13 +40,21 @@
                    label="密码"
                    placeholder="密码"
                    :rules="[{ required: true, message: '请填写密码' }]" />
-        <div style="margin: 16px;margin-top: 40%;">
+        <div style="margin: 16px; margin-top: 40%">
           <van-button round
                       block
                       type="info"
+                      @click="submit"
                       native-type="submit">提交</van-button>
         </div>
       </van-form>
+      <van-overlay :show="show"
+                   @click="show = false">
+        <van-loading type="spinner"
+                     vertical
+                     color="#1989fa" />
+            加载中.....
+      </van-overlay>
     </div>
   </div>
 </template>
@@ -54,6 +62,7 @@
 <script>
 import TopBar from '../commpoents/topBar.vue'
 import { Toast } from 'vant'
+import security from '../../apis/security'
 export default {
   components: {
     TopBar,
@@ -65,16 +74,38 @@ export default {
       phone: '',
       columns: ['男', '女'],
       showPicker: false,
-      sexValue:'',
+      sexValue: '',
+      datas: {},
+      show: false,
     }
   },
   methods: {
     submit() {},
     onSubmit() {},
     onConfirm(value, index) {
-    //   Toast(`当前值：${value}, 当前索引：${index},${this.showPicker}`)
-        this.sexValue = value
-        this.showPicker = false
+      //   Toast(`当前值：${value}, 当前索引：${index},${this.showPicker}`)
+      this.sexValue = value
+      this.showPicker = false
+    },
+    submit() {
+      this.show = true
+      let datas = {
+        phone: this.phone,
+        username: this.username,
+        password: this.password,
+        sex: this.sexValue,
+      }
+      security.register(datas).then((res) => {
+        this.show = false
+        if (res.data.code === 200) {
+          
+          Notify(datas.username+'用户注册成功');
+          this.$router.push({path:'/lgoin'})
+          
+        }else{
+            Notify(datas.username+'用户注册失败');
+        }
+      })
     },
   },
 }

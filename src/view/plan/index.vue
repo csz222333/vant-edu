@@ -19,27 +19,7 @@
                   type="info"
                   @click="show=true"
                   native-type="submit">新增计划</van-button>
-      <!-- <van-action-sheet v-model="show"
-                        title="新增">
-        <van-cell title="选择日期"
-                  :value="date"
-                  @click="dateShow = true" />
-        <van-calendar v-model="dateShow"
-                      @confirm="onConfirm" />
-      </van-action-sheet> -->
-      <van-popup v-model="show"
-                 round
-                 position="bottom"
-                 :style="{ height: '50%' }">
-
-        <van-cell title="选择日期"
-                    :value="date"
-                    @click="dateShow = true" />
-        <van-calendar v-model="dateShow"
-                        @confirm="onConfirm" />
-
-      </van-popup>
-
+     
     </div>
   </div>
 </template>

@@ -1,27 +1,30 @@
 <template>
   <div class="course_apps">
-    <div class="left_bar">
+    <!-- <div class="left_bar">
       <van-sidebar v-model="activeKey">
         <van-sidebar-item title="初一" />
         <van-sidebar-item title="初二" />
         <van-sidebar-item title="初三" />
       </van-sidebar>
-    </div>
+    </div> -->
     <div class="right_main">
       <div>
         <van-grid square
                   :gutter="20"
                   :column-num="2">
-          <van-grid-item v-for=" x in 10"
-                         :key="x">
-            <van-image src="http://img.fangxz.top/2022/09/27/6331e6f675d9f.png" />
+          <van-grid-item v-for=" x in record"
+                         @click="getque(x)"
+                         :text="x.context"
+                         :key="x.id">
+            <!-- <van-image src="http://img.fangxz.top/2022/09/27/6331e6f675d9f.png" /> -->
           </van-grid-item>
         </van-grid>
 
       </div>
       <div>
         <van-pagination v-model="currentPage"
-                        :page-count="12"
+                        @change="getCatalog"
+                        :page-count="pages"
                         mode="simple" />
 
       </div>
@@ -30,15 +33,37 @@
 </template>
 
 <script>
+import question from '../../apis/question'
+
 export default {
   data() {
     return {
       activeKey: '',
-      "page-count":0,
-      currentPage:1,
+      'page-count': 0,
+      currentPage: 1, //当前页码
+      pageSize: 8, //查询的每页数量
+      record: [],
+      pages: 0,
     }
   },
-  methods: {},
+  created() {
+    this.getCatalog()
+  },
+  methods: {
+    getCatalog() {
+      let page = {
+        size: this.pageSize,
+        current: this.currentPage,
+      }
+      question.Catalog(page).then((res) => {
+        this.record = res.data.data.records
+        this.pages = res.data.data.pages
+      })
+    },
+    getque(data){
+        this.$router.push({name:"question",params:{data:data}})
+    },
+  },
 }
 </script>
 
@@ -56,7 +81,7 @@ export default {
 .right_main {
   padding-top: 5%;
   height: 95%;
-  width: 73%;
+  width: 100%;
 }
 .van-sidebar {
   width: 100%;

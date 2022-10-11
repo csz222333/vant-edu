@@ -9,27 +9,6 @@ const routes = [
         redirect: '/login'
     },
     {
-        name: 'user',
-        component: () => import('./view/user'),
-        meta: {
-            title: '会员中心'
-        }
-    },
-    {
-        name: 'cart',
-        component: () => import('./view/cart'),
-        meta: {
-            title: '购物车'
-        }
-    },
-    {
-        name: 'goods',
-        component: () => import('./view/goods'),
-        meta: {
-            title: '商品详情'
-        },
-    },
-    {
         name: 'login',
         path: '/login',
         component: () => import('./view/login'),
@@ -65,6 +44,16 @@ const routes = [
                 path: '/edu/plan',
                 component: () => import('./view/plan/index.vue'),
             },
+            {
+                name:"question",
+                path: '/edu/question',
+                component: () => import('./view/course/question.vue'),
+            },
+            {
+                name:"userInfo",
+                path: '/edu/userInfo',
+                component: () => import('./view/user/UserInfo.vue'),
+            },
             
         ]
     }
@@ -75,7 +64,10 @@ routes.forEach(route => {
     route.path = route.path || '/' + (route.name || '');
 });
 
-const router = new Router({ routes });
+const router = new Router({ 
+    routes,
+    mode: 'history',
+});
 
 router.beforeEach((to, from, next) => {
     const title = to.meta && to.meta.title;

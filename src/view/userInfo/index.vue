@@ -15,6 +15,7 @@
       <van-cell title="更新资料"
                 style="font-size: 1.2rem;"
                 is-link
+                @click="updateInfo"
                 icon="edit" />
     </div>
     <div class="infos_content">
@@ -24,6 +25,9 @@
         <van-grid-item icon="photo-o" text="课外资料" />
         <van-grid-item icon="photo-o" text="用户反馈" />
       </van-grid>
+    </div>
+    <div class="logout_ing">
+        <van-button type="primary" block @click="logout">退出登入</van-button>
     </div>
 
   </div>
@@ -37,6 +41,20 @@ export default {
       Names: 'pprxo',
     }
   },
+  mounted(){
+        let user =  localStorage.getItem("user")
+        user =  JSON.parse(user)
+        this.Names = user.username
+        this.phone = user.phone
+  },
+  methods:{
+    logout(){
+        this.$router.push({path:'/lgoin'})
+    },
+    updateInfo(){
+        this.$router.push({path:'/edu/userInfo'})
+    }
+  }
 }
 </script>
 
@@ -67,7 +85,7 @@ export default {
 
 .infos_content {
   width: 100%;
-  height: 40%;
+  height: 49%;
   background-color: #fff;
 }
 </style>

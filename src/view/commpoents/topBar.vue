@@ -4,6 +4,7 @@
                  left-text="退后"
                  left-arrow
                  @click-left="onClickLeft"/>
+                 <van-button type="default">完成</van-button>
   </div>
 </template>
 
