@@ -1,6 +1,8 @@
 <template>
   <div class="bats">
-    <van-nav-bar title="" left-text="退后" left-arrow @click-left="onClickLeft" right-text="完成" />
+    <van-nav-bar title="" left-text="退后" left-arrow @click-left="onClickLeft" v-if="flag" />
+    <van-nav-bar title="" left-text="退后" left-arrow @click-left="onClickLeft" @click-right="parentMethod"
+      right-text="完成" v-if="!flag" />
   </div>
 </template>
 
@@ -10,6 +12,7 @@ export default {
   data() {
     return {
       paths: '',
+      flag: true,
     }
   },
   methods: {
@@ -25,6 +28,12 @@ export default {
     },
     setPaths(value) {
       this.paths = value
+    },
+    setFlag(value) {
+      this.flag = value
+    },
+    parentMethod() {
+      this.$parent.fatherMethod();
     }
   }
 }

@@ -33,6 +33,9 @@ export default {
         this.getList();
 
     },
+    mounted() {
+        this.$refs.tbr.setPaths('/edu/setting')
+    },
     methods: {
         getList() {
             let page = {
@@ -40,7 +43,6 @@ export default {
                 current: this.currentPage,
             }
             question.getRecordErrorQuestion(page).then((res) => {
-                console.log(res);
                 this.record = res.data.data.records
                 this.pages = res.data.data.pages
                 if (this.record.length == 0) {
@@ -49,13 +51,12 @@ export default {
             })
         },
         deletelist(id) {
-            console.log(id);
             question.getdeleteErrorQuestion({ "id": id }).then(res => {
                 this.getList()
             })
         },
-        toerror(id) { 
-            this.$router.push({name:"ErrorQuestionInfo",params:{"id":id}})
+        toerror(id) {
+            this.$router.push({ name: "ErrorQuestionInfo", params: { "id": id } })
         }
 
     }
