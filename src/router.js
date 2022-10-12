@@ -60,6 +60,11 @@ const routes = [
                 component: () => import('./view/userInfo/ErrorQuestionList.vue'),
             },
             {
+                name: "ErrorQuestionInfo",
+                path: '/edu/errorQuestionInfo',
+                component: () => import('./view/userInfo/ErrorQuestionInfo.vue'),
+            },
+            {
                 name: "Extracurricular",
                 path: '/edu/Extracurricular',
                 component: () => import('./view/course/Extracurricular.vue'),

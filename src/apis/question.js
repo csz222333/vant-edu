@@ -45,5 +45,28 @@ export default{
                },
             data:datas
         })
+    },
+
+    //删除错题记录
+    getdeleteErrorQuestion(datas){
+        return request({
+            url:'/Question/deleteErrorQuestion',
+            method:'POST',
+            headers:{
+                'Content-type': 'multipart/form-data'
+               },
+            data:datas
+        })
+    },
+    //题目详情
+    getQuestionById(datas){
+        return request({
+            url:'/Question/getQuestionById',
+            method:'POST',
+            headers:{
+                'Content-type': 'multipart/form-data'
+               },
+            data:datas
+        })
     }
 }
