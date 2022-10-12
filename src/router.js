@@ -45,19 +45,29 @@ const routes = [
                 component: () => import('./view/plan/index.vue'),
             },
             {
-                name:"question",
+                name: "question",
                 path: '/edu/question',
                 component: () => import('./view/course/question.vue'),
             },
             {
-                name:"userInfo",
+                name: "userInfo",
                 path: '/edu/userInfo',
                 component: () => import('./view/user/UserInfo.vue'),
             },
             {
-                name:"errorquestionList",
+                name: "errorquestionList",
                 path: '/edu/errorquestionList',
                 component: () => import('./view/userInfo/ErrorQuestionList.vue'),
+            },
+            {
+                name: "Extracurricular",
+                path: '/edu/Extracurricular',
+                component: () => import('./view/course/Extracurricular.vue'),
+            },
+            {
+                name: "previewPdf",
+                path: '/edu/pdf',
+                component: () => import('./view/course/previewPdf.vue'),
             },
         ]
     }
@@ -68,7 +78,7 @@ routes.forEach(route => {
     route.path = route.path || '/' + (route.name || '');
 });
 
-const router = new Router({ 
+const router = new Router({
     routes,
     mode: 'history',
 });

@@ -24,7 +24,6 @@ export default {
   data() {
     return {
         user:{},
-
     }
   },
   mounted() {
@@ -33,7 +32,9 @@ export default {
         user =  JSON.parse(user)
        this.user = user
   },
-  methods: {},
+  methods: {
+
+  },
 }
 </script>
 

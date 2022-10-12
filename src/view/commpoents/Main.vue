@@ -1,14 +1,13 @@
 <template>
-    <div class="mains">
-        <router-view  :key="key"></router-view>
-    </div>
+  <div class="mains">
+    <router-view :key="key"></router-view>
+  </div>
 </template>
 
 <script>
 export default {
-    created(){
-        window.console.log(this.$route.path)
-    },
+  created() {
+  },
   computed: {
     key() {
       return this.$route.path
@@ -18,8 +17,8 @@ export default {
 </script>
 
 <style>
-.mains{
-    height: 100%;
-    widows: 100%;
+.mains {
+  height: 100%;
+  widows: 100%;
 }
 </style>
