@@ -5,9 +5,9 @@
     </div>
     <div class="maind">
       <div id="1x" class="its" v-for="item in dataUrl" :key="item.name">
-        <van-cell-group inset @click="preview(item)">
+        <van-cell-group class="content" inset @click="preview(item)">
           <van-cell :title="item.name" />
-          <van-image width="18rem" height="10rem" fit="contain" :src="item.img" />
+          <van-image class="img" fit="contain" :src="item.img" />
         </van-cell-group>
       </div>
     </div>
@@ -105,5 +105,15 @@ export default {
 <style lang="less" scoped>
 .its {
   margin-top: 16px;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .img {
+    width: 10rem;
+  }
 }
 </style>

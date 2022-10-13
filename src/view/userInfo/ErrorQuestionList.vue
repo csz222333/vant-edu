@@ -31,7 +31,6 @@ export default {
     },
     created() {
         this.getList();
-
     },
     mounted() {
         this.$refs.tbr.setPaths('/edu/setting')
