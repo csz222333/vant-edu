@@ -68,5 +68,16 @@ export default{
                },
             data:datas
         })
+    },
+     //计划列表
+     getListPlan(datas){
+        return request({
+            url:'/Plan/ListPlan',
+            method:'POST',
+            headers:{
+                'Content-type': 'multipart/form-data'
+               },
+            data:datas
+        })
     }
 }

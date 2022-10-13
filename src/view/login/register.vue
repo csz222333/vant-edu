@@ -8,20 +8,25 @@
     </div>
     <div>
       <van-form @submit="onSubmit">
+
         <van-field v-model="username" name="用户名" label="用户名" placeholder="用户名"
           :rules="[{ required: true, message: '请填写用户名' }]" />
         <van-field readonly clickable label="性别" :value="sexValue" placeholder="选择性别" @click="showPicker = true" />
+
         <van-popup v-model="showPicker" round position="bottom">
           <van-picker show-toolbar :columns="columns" @cancel="showPicker = false" @confirm="onConfirm" />
         </van-popup>
 
         <van-field v-model="phone" type="number" name="手机号码" label="手机号码" placeholder="手机号码"
-          :rules="[{ required: true, message: '请填写手机号码' }]" />
+          :rules="[{ required: true, message: '请填写手机号码' },{pattern,message:'请输入正确的手机号'}]" />
+
         <van-field v-model="password" type="password" name="密码" label="密码" placeholder="密码"
           :rules="[{ required: true, message: '请填写密码' }]" />
+
         <div style="margin: 16px; margin-top: 40%">
           <van-button round block type="info" @click="submit" native-type="submit">提交</van-button>
         </div>
+
       </van-form>
       <van-overlay :show="show" @click="show = false">
         <van-loading type="spinner" vertical color="#1989fa" />
@@ -49,6 +54,7 @@ export default {
       sexValue: '',
       datas: {},
       show: false,
+      pattern: /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/
     }
   },
   methods: {
