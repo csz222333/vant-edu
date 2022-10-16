@@ -37,6 +37,10 @@ const routes = [
                 component: () => import('./view/course/index.vue'),
             },
             {
+                path: '/edu/video',
+                component: () => import('./view/videos/index.vue'),
+            },
+            {
                 path: '/edu/setting',
                 component: () => import('./view/userInfo/index.vue'),
             },

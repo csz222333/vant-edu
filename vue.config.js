@@ -7,7 +7,7 @@ module.exports ={
         disableHostCheck: true,
         proxy:{
             '/api':{
-                target:'http://htv.fangxz.top',
+                target:'http://nacos.fangxz.top',
                 changeOrigin:true,
                 pathRewrite:{
                     '^/api':''
