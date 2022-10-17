@@ -24,7 +24,10 @@ export default {
         this.$router.push({ path: xpath })
         return
       }
-      this.$router.push({ path: '/login' })
+      this.$router.push({
+        path: '/login', data: () => {
+        },
+      })
     },
     setPaths(value) {
       this.paths = value

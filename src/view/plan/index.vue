@@ -1,15 +1,16 @@
 <template>
   <div class="plan_apps">
     <div class="tops_bt">
-      <p style="text-align: center;margin-top: 0;">今日计划:{{todaySize}}项,已经完成:{{completeSize}}项</p>
+      <!-- <p style="text-align: center;margin-top: 0;">今日计划:{{todaySize}}项</p> -->
       <div>
         <van-grid square :column-num="3" :gutter="10">
-          <van-grid-item v-for="value in 8" :key="value" icon="photo-o" text="文字" />
+          <van-grid-item v-for="value in list" :key="value.id" icon="photo-o" :text="value.title"
+            @click="edit(value)" />
         </van-grid>
       </div>
     </div>
     <div class="cent_sub">
-      <van-button round block type="info" @click="show=true" native-type="submit">新增计划</van-button>
+      <van-button round block type="info" @click="submit" native-type="submit">新增计划</van-button>
     </div>
   </div>
 </template>
@@ -26,17 +27,20 @@ export default {
       dateShow: false,
       showPicker: false,
       columns: ['男', '女'],
+      list: [],
     }
   },
   methods: {
-    onConfirm(date) {
-      this.show = false
-      this.date = this.formatDate(date)
+    submit() {
+      this.$router.push({ path: '/edu/planInfo' })
     },
+    edit(value) {
+      this.$router.push({ name: "PlanInfo", params: value })
+    }
   },
-  mounted() { 
-    question.getListPlan().then(res => { 
-      console.log(res);
+  mounted() {
+    question.getListPlan().then(res => {
+      this.list = res.data.data
     })
   }
 }

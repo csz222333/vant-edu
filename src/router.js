@@ -3,6 +3,14 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
+//解决vue路由重复导航错误
+//获取原型对象上的push函数
+const originalPush = Router.prototype.push
+//修改原型对象中的push方法
+Router.prototype.push = function push(location) {
+    return originalPush.call(this, location).catch(err => err)
+}
+
 const routes = [
     {
         path: '*',
@@ -49,6 +57,11 @@ const routes = [
                 component: () => import('./view/plan/index.vue'),
             },
             {
+                name: 'PlanInfo',
+                path: '/edu/planInfo',
+                component: () => import('./view/plan/PlanInfo.vue'),
+            },
+            {
                 name: "question",
                 path: '/edu/question',
                 component: () => import('./view/course/question.vue'),
@@ -59,9 +72,14 @@ const routes = [
                 component: () => import('./view/user/UserInfo.vue'),
             },
             {
-                name: "errorquestionList",
-                path: '/edu/errorquestionList',
-                component: () => import('./view/userInfo/ErrorQuestionList.vue'),
+                name: "userInfo",
+                path: '/edu/userInfo',
+                component: () => import('./view/user/UserInfo.vue'),
+            },
+            {
+                name: "statistical",
+                path: '/edu/Statistical',
+                component: () => import('./view/course/statistical.vue'),
             },
             {
                 name: "ErrorQuestionInfo",
@@ -81,23 +99,9 @@ const routes = [
         ]
     }
 ];
-
-// add route path
-routes.forEach(route => {
-    route.path = route.path || '/' + (route.name || '');
-});
-
 const router = new Router({
     routes,
     mode: 'history',
-});
-
-router.beforeEach((to, from, next) => {
-    const title = to.meta && to.meta.title;
-    if (title) {
-        document.title = title;
-    }
-    next();
 });
 
 export {

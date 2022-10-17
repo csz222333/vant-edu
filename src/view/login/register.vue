@@ -40,9 +40,11 @@
 import TopBar from '../commpoents/topBar.vue'
 import { Toast } from 'vant'
 import security from '../../apis/security'
+import { Notify } from 'vant';
+
 export default {
   components: {
-    TopBar,
+    TopBar, [Notify.Component.name]: Notify.Component,
   },
   data() {
     return {
@@ -58,7 +60,6 @@ export default {
     }
   },
   methods: {
-    submit() { },
     onSubmit() { },
     onConfirm(value, index) {
       //   Toast(`当前值：${value}, 当前索引：${index},${this.showPicker}`)

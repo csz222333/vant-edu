@@ -15,7 +15,8 @@
     "vant": "^2.12.25",
     "vue": "^2.6.10",
     "vue-pdf": "^4.3.0",
-    "vue-router": "^3.0.5"
+    "vue-router": "^3.0.5",
+    "echarts": "5.2.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.1.1",

@@ -13,7 +13,7 @@
     <div class="infos_content">
       <van-grid :column-num="2" square>
         <van-grid-item icon="photo-o" text="错题本" @click="toErrorQuestionList" />
-        <van-grid-item icon="photo-o" text="错题统计" />
+        <van-grid-item icon="photo-o" text="错题统计" @click="toErrorstatistical" />
         <van-grid-item icon="photo-o" text="课外资料" @click="toExtracurricular" />
         <van-grid-item icon="photo-o" text="用户反馈" />
       </van-grid>
@@ -57,6 +57,12 @@ export default {
     },
     toExtracurricular() {
       this.$router.push({ path: '/edu/Extracurricular' })
+    },
+    toErrorstatistical() {
+      this.$router.push({
+        path: '/edu/Statistical', data: () => {
+        },
+      })
     }
   }
 }
