@@ -82,6 +82,11 @@ const routes = [
                 component: () => import('./view/course/statistical.vue'),
             },
             {
+                name: "down",
+                path: '/edu/down',
+                component: () => import('./view/course/down.vue'),
+            },
+            {
                 name: "ErrorQuestionInfo",
                 path: '/edu/errorQuestionInfo',
                 component: () => import('./view/userInfo/ErrorQuestionInfo.vue'),

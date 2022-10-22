@@ -110,5 +110,23 @@ export default {
             },
             data: datas
         })
+    },
+    downFile(item) {
+        return request({
+            method: "get",
+            url: item.urls,
+            headers: {
+                type: 'application/pdf',
+            },
+            responseType: 'blob',
+        }).then(res => {
+            let url = window.URL.createObjectURL(new Blob([res.data]));  // new Blob([data])用来创建URL的file对象或者blob对象
+            let link = document.createElement('a');
+            link.style.display = 'none';
+            link.href = url;
+            link.download = item.name //docNumber 动态文件名
+            document.body.appendChild(link);
+            link.click();
+        })
     }
 }

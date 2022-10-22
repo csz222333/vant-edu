@@ -15,7 +15,7 @@
         <van-grid-item icon="photo-o" text="错题本" @click="toErrorQuestionList" />
         <van-grid-item icon="photo-o" text="错题统计" @click="toErrorstatistical" />
         <van-grid-item icon="photo-o" text="课外资料" @click="toExtracurricular" />
-        <van-grid-item icon="photo-o" text="用户反馈" />
+        <van-grid-item icon="photo-o" text="课件下载" @click="down" />
       </van-grid>
     </div>
     <div class="logout_ing">
@@ -63,7 +63,10 @@ export default {
         path: '/edu/Statistical', data: () => {
         },
       })
-    }
+    },
+    down() {
+      this.$router.push({ name: 'down' })
+    },
   }
 }
 </script>
