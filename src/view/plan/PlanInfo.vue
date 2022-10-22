@@ -50,7 +50,7 @@ export default {
         topBar, [Notify.Component.name]: Notify.Component,
     },
     created() {
-        this.form = this.$route.params;
+
         let page = {
             size: 27,
             current: 1,
@@ -63,6 +63,7 @@ export default {
 
     },
     mounted() {
+        this.form = this.$route.params;
         this.$refs.tbr.setPaths('/edu/plan')
     },
     data() {
